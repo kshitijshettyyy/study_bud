@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block content %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% comment %} to avoid the malicious content ig. aint really reuired but looks cool {% endcomment %}
+        {{form.as_p}}
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
