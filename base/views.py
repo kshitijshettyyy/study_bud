@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.db.models import Q
 from .models import Room,Topic
 from .forms import RoomForm
 
@@ -12,7 +13,11 @@ from .forms import RoomForm
 def home(request):
     sr=request.GET.get('sr') if request.GET.get('sr')!= None else ''
 
-    rooms=Room.objects.filter(topic__name__contains=sr) #query set#overriding
+    rooms=Room.objects.filter(
+        Q(topic__name__icontains=sr)|
+        Q(name__icontains=sr)|
+        Q(description__icontains=sr)
+        ) #query set#overriding
     topics=Topic.objects.all()
     context={'rooms':rooms,'topics':topics}
     return render(request,'base/home.html',context)
