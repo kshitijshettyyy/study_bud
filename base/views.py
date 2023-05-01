@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.db.models import Q
 from .models import Room,Topic
 from .forms import RoomForm
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 # rooms =[
@@ -9,7 +11,20 @@ from .forms import RoomForm
 #     {'id':2,'name':'css developers'},
 #     {'id':3,'name':'lets learn java'},
 
-# ]#overriden in first case
+# overriden in first case
+def loginPage(request):
+    # if request.method=='POST':
+    #     username=request.POST.get('username')
+    #     password=request.POST.get('password')
+    #     try :
+    #         user=User.objects.get(username=username)
+    #     except:
+                
+        
+    context={}
+    return render (request,'base/login_register.html',context)
+
+
 def home(request):
     sr=request.GET.get('sr') if request.GET.get('sr')!= None else ''
 
@@ -17,9 +32,11 @@ def home(request):
         Q(topic__name__icontains=sr)|
         Q(name__icontains=sr)|
         Q(description__icontains=sr)
-        ) #query set#overriding
+        )
+     #query set#overriding
     topics=Topic.objects.all()
-    context={'rooms':rooms,'topics':topics}
+    room_count=rooms.count()
+    context={'rooms':rooms,'topics':topics,'room_count':room_count}
     return render(request,'base/home.html',context)
 def room(request,pk):
     room=Room.objects.get(id=pk)#query selector

@@ -1,6 +1,6 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>Lastest Rooms</h1>
+<h1>Latest Rooms</h1>
 <div>
     <div>
         <h3>Search for rooms</h3>
@@ -17,6 +17,7 @@
         <hr>
     </div>
     <div>
+        <h5>{{room_count}} rooms available</h5>
         <h3><a href="{% url 'create_room' %}">create room</a></h3>
         <div>
             {% for room in rooms%}
