@@ -1,38 +1,21 @@
 {% extends 'main.html' %}
 {% block content %}
-<h1>Latest Rooms</h1>
-<div>
+<style>
+    .home-container{
+        display:grid;
+        grid-template-columns:1fr 3fr 1fr;
+    }
+</style>
+<div class="home-container">
     <div>
-        <h3>Search for rooms</h3>
-        <hr>
-        <div>
-            <a href="{% url 'home' %}">All</a>
-        </div>
-        {% for topic in topics %}
-            <div>
-                <a href="{% url 'home' %}?sr={{topic.name}}">{{topic.name}}</a>
-
-            </div>
-        {% endfor %}
-        <hr>
+        {% include 'base/topics.html' %}
     </div>
     <div>
-        <h5>{{room_count}} rooms available</h5>
-        <h3><a href="{% url 'create_room' %}">create room</a></h3>
-        <div>
-            {% for room in rooms%}
-                <div>
-                    <span>@{{room.host}}</span>
-                    <h3>{{room.id}}--<a href="{% url 'room' room.id %}">{{room.name}}</a></h3>
-                    <span>#{{room.topic}}</span>
-                    <br>
-                    <a href="{% url 'update_room' room.id %}">Edit Room</a>
-                    <a href="{% url 'delete_room' room.id %}">delete room</a>
-                 
-                    <hr>
-                </div>
-            {% endfor %}
-        </div>
+       {% include 'base/latestRooms.html' %}
+        
+    </div>
+    <div>
+       {% include 'base/activity.html' %}
     </div>
 
 </div>

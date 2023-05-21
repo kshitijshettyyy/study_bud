@@ -3,6 +3,7 @@
 
 <form action="" method="post">
     {% csrf_token %}
+    <hr>
     <p>are you sure u wanna delete "{{obj}}"?</p>
     <a href="{{request.META.HTTP_REFERER}}">Return</a>
     <input type="submit" value="confirm">

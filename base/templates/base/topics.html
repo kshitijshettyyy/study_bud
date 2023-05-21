@@ -1,0 +1,12 @@
+        <h1>Search for rooms</h1>
+        <hr>
+        <div>
+            <a href="{% url 'home' %}">All</a>
+        </div>
+        {% for topic in topics %}
+            <div>
+                <a href="{% url 'home' %}?sr={{topic.name}}">{{topic.name}}</a>
+
+            </div>
+        {% endfor %}
+        <hr>
