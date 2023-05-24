@@ -1,15 +1,32 @@
-<a href="/">
-    <h1>CollaborateED</h1>
-    <br>
-</a>
-<form action="{% url 'home' %}" method="get">
-    <input type="text" name="sr" placeholder="Search">
-</form>
-<hr>
-{% if request.user.is_authenticated %}
-<p>Hello {{request.user}} </p>
-<a href="{% url 'logout' %}">Log Out</a>
-{% else %}
-<a href="{% url 'login' %}">Log_In</a>
-{% endif %}
+<style>
+    .navbar-container{
+        display:grid;
+        grid-template-columns:1fr 2fr 1fr
+    }
+    .abc{
+        margin-top:30px
+    }
+</style>
+<div class="navbar-container">
+    <div>
+        <a href="/">
+            <h1>KORD</h1>
+            <br>
+        </a>    
+    </div>
+    <div class="abc">
+        <form action="{% url 'home' %}" method="get">
+            <input type="text" name="sr" placeholder="Search">
+        </form>
+   
+    </div>
+    <div>
+        {% if request.user.is_authenticated %}
+    <p>Hello {{request.user}} </p>
+    <a href="{% url 'logout' %}">Log Out</a>
+    {% else %}
+    <a href="{% url 'login' %}">Log_In</a>
+    {% endif %}
+    </div>
+</div>
 <hr>
